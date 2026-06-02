@@ -45,8 +45,7 @@ Vehicle-Emergency-Control/
    ```
 
 4. **Provide YOLOv8 ambulance model**
-   - Place your trained model at `models/ambulance_yolov8.pt`, or
-   - Use the dashboard sidebar to point to any local `.pt` model file.
+   - Place your trained model at `models/ambulance_yolov8.pt`.
 
 ## Run the Dashboard
 

@@ -92,18 +92,20 @@ def main():
     st.title("Vehicle Emergency Control")
     st.caption("AI-powered emergency-priority traffic management demo using YOLOv8 + OpenCV + Streamlit")
 
+    model_path = Path("models/ambulance_yolov8.pt")
+
     with st.sidebar:
         st.header("Model & Input")
-        model_path = st.text_input("YOLOv8 model path", value="models/ambulance_yolov8.pt")
+        st.caption(f"Model path: {model_path}")
         conf_threshold = st.slider("Confidence threshold", min_value=0.1, max_value=0.95, value=0.35, step=0.05)
         source_type = st.radio("Input source", ["Image", "Video", "Webcam"], index=0)
 
-    if not Path(model_path).exists():
-        st.warning(f"Model not found at {model_path}. Provide a trained YOLOv8 model file to run detection.")
+    if not model_path.exists():
+        st.warning(f"Model not found at {model_path}. Place your trained model there to run detection.")
         return
 
     try:
-        model = load_model(model_path)
+        model = load_model(str(model_path))
     except Exception as exc:
         st.error(f"Failed to load YOLO model: {exc}")
         return
